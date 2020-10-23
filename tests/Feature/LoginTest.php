@@ -60,4 +60,62 @@ class LoginTest extends TestCase
 
         $response = $this->handler->handle($request);
     }
+
+    public function testLoginWith0W01SWD()
+    {
+        $request = new LoginRequest();
+        $request->setDomain('01');
+        $request->setLogin('TEST');
+        $request->setPassword('qwerty!@#');
+        $request->setOperatorId('123456789');
+        $request->setOperatorType(OperatorType::PROVIDER);
+
+        /** @var \NGT\Ewus\Responses\LoginResponse */
+        $response = $this->handler->handle($request);
+
+        $this->assertEquals('Użytkownik został prawidłowo zalogowany.', $response->getLoginMessage());
+    }
+
+    public function testLoginWith0W01LEK()
+    {
+        $request = new LoginRequest();
+        $request->setDomain('01');
+        $request->setLogin('TEST');
+        $request->setPassword('qwerty!@#');
+
+        $request->setOperatorType(OperatorType::DOCTOR);
+
+        /** @var \NGT\Ewus\Responses\LoginResponse */
+        $response = $this->handler->handle($request);
+
+        $this->assertEquals('Użytkownik został prawidłowo zalogowany.', $response->getLoginMessage());
+    }
+
+    public function testLoginWith0W15SWD()
+    {
+        $request = new LoginRequest();
+        $request->setDomain('15');
+        $request->setLogin('TEST1');
+        $request->setPassword('qwerty!@#');
+
+        /** @var \NGT\Ewus\Responses\LoginResponse */
+        $response = $this->handler->handle($request);
+
+        $this->assertEquals('Użytkownik został prawidłowo zalogowany.', $response->getLoginMessage());
+    }
+
+    public function testLoginWith0W09LEK()
+    {
+        $request = new LoginRequest();
+        $request->setDomain('09');
+        $request->setOperatorType(OperatorType::DOCTOR);
+        $request->setOperatorId('lekarz09');
+        $request->setLogin('TEST');
+        $request->setPassword('qwerty!@#');
+
+        /** @var \NGT\Ewus\Responses\LoginResponse */
+        $response = $this->handler->handle($request);
+
+        $this->assertEquals('Użytkownik został prawidłowo zalogowany.', $response->getLoginMessage());
+    }
 }

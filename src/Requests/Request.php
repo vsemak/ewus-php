@@ -57,6 +57,7 @@ abstract class Request implements RequestContract
             '_attributes'     => $this->envelopeNamespaces(),
         ]);
 
+
         return $xml->dropXmlDeclaration()->prettify()->toXml();
     }
 }
