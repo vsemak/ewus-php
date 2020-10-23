@@ -1,6 +1,7 @@
 {
     "name": "nextgen-tech/ewus",
     "type": "library",
+    "description": "",
     "license": "MIT",
     "authors": [
         {
