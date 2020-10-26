@@ -58,7 +58,7 @@ class LoginTest extends TestCase
         $request->setOperatorId('123456789');
         $request->setOperatorType(OperatorType::PROVIDER);
 
-        $response = $this->handler->handle($request);
+        $this->handler->handle($request);
     }
 
     public function testLoginWith0W01SWD()

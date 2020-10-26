@@ -6,7 +6,7 @@ namespace NGT\Ewus\Enums;
 class OperatorDomain
 {
     const REQUIRES_OPERATOR_ID = [
-        // '01',
+        '01',
         '04',
         '05',
         '06',

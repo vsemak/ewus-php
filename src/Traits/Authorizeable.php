@@ -186,25 +186,12 @@ trait Authorizeable
             ];
         };
 
-        switch ($this->getDomain()) {
-            case "01":
-                $addAuthTypeToCredentials();
+        if ($this->requiresOperatorIdentificator()) {
+            $addAuthTypeToCredentials();
 
-                if ($this->getOperatorIdentificator()) {
-                    $addAuthNameToCredentials();
-                }
-                break;
-            case "09":
-                $addAuthTypeToCredentials();
+            if ($this->operatorId) {
                 $addAuthNameToCredentials();
-                break;
-            case "15": break;
-            default:
-                if ($this->requiresOperatorIdentificator()) {
-                    $addAuthTypeToCredentials();
-                    $addAuthNameToCredentials();
-                }
-                break;
+            }
         }
 
         return $credentials;
